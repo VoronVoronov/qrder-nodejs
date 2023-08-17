@@ -3,7 +3,7 @@ services:
   nodejs_app:
     build: .
     ports:
-      - "3000:3000" # Замените на порт вашего Node.js приложения
+      - "4001:4001" # Замените на порт вашего Node.js приложения
   nginx:
     image: nginx
     volumes:
