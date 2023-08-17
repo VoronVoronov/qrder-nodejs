@@ -15,5 +15,4 @@ COPY . .
 RUN mkdir -p /var/www/certbot
 
 # Запустите приложение
-CMD [ "mkdir", "/var/www/certbot" ]
 CMD [ "npm", "start" ]
