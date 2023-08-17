@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 
 # Создайте директорию для Certbot
-RUN mkdir -p /var/www/certbot
+RUN mkdir -p /var/www/html
 
 # Запустите приложение
 CMD [ "npm", "start" ]
