@@ -7,7 +7,7 @@ class UsersService {
         return new Promise(async (res, rej) => {
             try {
                 const { phone, email, password } = data.body;
-                if(!phone && !email && !password && phone !== null && email !== null && password !== null){
+                if(!phone && !email && !password && phone === null && email === null && password === null){
                     return res({
                         status: 400,
                         message: __("input_required"),
@@ -52,7 +52,7 @@ class UsersService {
         return new Promise(async (res, rej) => {
             try {
                 const { email, password } = data.body;
-                if(!email && !password && email !== null && password !== null){
+                if(!email && !password && email === null && password === null){
                     return res({
                         status: 400,
                         message: __("input_required"),

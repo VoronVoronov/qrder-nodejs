@@ -9,8 +9,8 @@ class MenusController {
             //     return res.status(400).send(errors.array());
             // }
             let menu = await MenusService.createMenu(req);
-            if (menu) return res.status(201).json(menu);
-            else return res.status(500).send({
+            if (menu.status === 201) return res.status(201).json(menu);
+            else return res.status(menu.status).send({
                 message: menu.message,
             });
         } catch (err) {
