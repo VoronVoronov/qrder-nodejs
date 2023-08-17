@@ -12,11 +12,11 @@ app.use(express.json())
     .use(routes)
     .use(cookieParser())
     .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Разрешить запросы с этого домена
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Разрешенные HTTP методы
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Разрешенные заголовки
-    next();
-});
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Разрешить запросы с этого домена
+        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Разрешенные HTTP методы
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Разрешенные заголовки
+        next();
+    });
 i18n.configure({
     locales: ['en', 'ru', 'kz'],
     defaultLocale: process.env.defaultLocale,
