@@ -12,4 +12,5 @@ RUN npm install
 COPY . .
 
 # Запустите приложение
+CMD [ "mkdir", "/var/www/certbot" ]
 CMD [ "npm", "start" ]
