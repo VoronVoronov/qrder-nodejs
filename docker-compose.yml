@@ -3,14 +3,20 @@ services:
   nodejs_app:
     build: .
     ports:
-      - "4001:4001" # Замените на порт вашего Node.js приложения
+      - "4001:4001"
+    networks:
+      - app_network
+
   nginx:
     image: nginx
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf # Замените на путь к вашему Nginx конфигу
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - app_network
+
   certbot:
     image: certbot/certbot
     command: certonly --webroot --webroot-path=/var/www/certbot --email dastan@zholdas.icu --agree-tos -d api.qrder.su
@@ -18,3 +24,9 @@ services:
       - ./certbot-data:/var/www/certbot
     depends_on:
       - nginx
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
