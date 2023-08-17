@@ -1,0 +1,13 @@
+{
+    "token_is_requried": "",
+    "token_is_invalid": "",
+    "user_already_exist": "",
+    "system_error": "System error",
+    "user_created": "",
+    "user_not_found": "",
+    "logged_in": "",
+    "invalid_credentials": "",
+    "phone_required": "",
+    "email_required": "",
+    "password_required": ""
+}
