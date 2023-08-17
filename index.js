@@ -6,17 +6,17 @@ const express = require('express'),
     path = require('path'),
     port = process.env.API_PORT || 3000,
     i18n = require('i18n'),
-    cookieParser = require('cookie-parser'),
-    cors = require('cors')
+    cookieParser = require('cookie-parser');
 app.use(express.json())
     .use(express.urlencoded({ extended: true }))
     .use(routes)
     .use(cookieParser())
-    .use(cors({
-        origin: 'http://localhost:5173',
-        methods: 'GET,POST,PUT,DELETE,OPTIONS',
-        credentials: true
-    }))
+    .use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173'); // Разрешить запросы с этого домена
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Разрешенные HTTP методы
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Разрешенные заголовки
+    next();
+});
 i18n.configure({
     locales: ['en', 'ru', 'kz'],
     defaultLocale: process.env.defaultLocale,
