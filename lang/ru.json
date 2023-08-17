@@ -9,5 +9,7 @@
     "invalid_credentials": "Неверный логин или пароль.",
     "phone_required": "Пожалуйста, укажите номер телефона.",
     "email_required": "Пожалуйста, укажите email.",
-    "password_required": "Пожалуйста, укажите пароль."
+    "password_required": "Пожалуйста, укажите пароль.",
+    "menu_created": "Меню успешно создано.",
+    "input_required": "Пожалуйста, заполните все поля."
 }

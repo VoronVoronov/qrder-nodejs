@@ -7,6 +7,12 @@ class UsersService {
         return new Promise(async (res, rej) => {
             try {
                 const { phone, email, password } = data.body;
+                if(!phone && !email && !password && phone !== null && email !== null && password !== null){
+                    return res({
+                        status: 400,
+                        message: __("input_required"),
+                    });
+                }
                 const oldUser = await User.findOne({ email });
                 if (oldUser) {
                     return res({
@@ -17,14 +23,14 @@ class UsersService {
                 const encryptedPassword = await bcrypt.hash(password, 7);
                 const user = await User.create({
                     phone: phone,
-                    email: email.toLowerCase(), 
+                    email: email.toLowerCase(),
                     password: encryptedPassword,
                     registration_ip: data.ip,
                 });
                 const token = await jwt.sign(
-                    { 
-                        user_id: user._id, 
-                        email 
+                    {
+                        user_id: user._id,
+                        email
                     },
                         process.env.TOKEN_KEY,
                     {
@@ -46,6 +52,12 @@ class UsersService {
         return new Promise(async (res, rej) => {
             try {
                 const { email, password } = data.body;
+                if(!email && !password && email !== null && password !== null){
+                    return res({
+                        status: 400,
+                        message: __("input_required"),
+                    });
+                }
                 const user = await User.findOne({ email });
                 if (!user) {
                     return res({
@@ -55,9 +67,9 @@ class UsersService {
                 }
                 if (user && (await bcrypt.compare(password, user.password))) {
                     const token = jwt.sign(
-                        { 
-                          user_id: user._id, 
-                          email 
+                        {
+                          user_id: user._id,
+                          email
                         },
                           process.env.TOKEN_KEY,
                         {
@@ -81,7 +93,7 @@ class UsersService {
             } catch (err) {
                 return rej(err); // или какая-то другая обработка ошибки
             }
-        });        
+        });
     }
 }
 

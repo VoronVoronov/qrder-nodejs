@@ -9,5 +9,7 @@
     "invalid_credentials": "",
     "phone_required": "",
     "email_required": "",
-    "password_required": ""
+    "password_required": "",
+    "menu_created": "",
+    "input_required": ""
 }
