@@ -31,6 +31,12 @@ services:
     networks:
       - app_network
 
+volumes:  # Define the missing volumes here
+  web-root:
+  dhparam:
+  certbot-etc:
+  certbot-var:
+
 networks:
   app_network:
     driver: bridge
