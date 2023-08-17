@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000" # Проксирование порта Node.js
+      - "4001:4001" # Проксирование порта Node.js
 
   nginx:
     image: nginx
