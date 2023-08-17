@@ -21,7 +21,7 @@ services:
 
   certbot:
     image: certbot/certbot
-    command: certbot certonly --webroot --webroot-path=/var/www/html --email dastan@zholdas.icu --agree-tos --no-eff-email --force-renewal -d api.qrder.su
+    command: certonly --webroot --webroot-path=/var/www/html -d api.qrder.su -d www.api.qrder.su --email dastan@zholdas.icu --agree-tos --no-eff-email --force-renewal
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
@@ -30,6 +30,7 @@ services:
       - nginx
     networks:
       - app_network
+
 
 
 volumes:  # Define the missing volumes here
