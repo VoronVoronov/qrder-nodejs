@@ -6,11 +6,17 @@ const express = require('express'),
     path = require('path'),
     port = process.env.API_PORT || 3000,
     i18n = require('i18n'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    cors = require('cors')
 app.use(express.json())
     .use(express.urlencoded({ extended: true }))
     .use(routes)
-    .use(cookieParser());
+    .use(cookieParser())
+    .use(cors({
+        origin: 'http://localhost:5173',
+        methods: 'GET,POST,PUT,DELETE,OPTIONS',
+        credentials: true
+    }))
 i18n.configure({
     locales: ['en', 'ru', 'kz'],
     defaultLocale: process.env.defaultLocale,
