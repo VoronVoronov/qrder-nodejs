@@ -6,8 +6,8 @@ class UsersService {
     createUser(data) {
         return new Promise(async (res, rej) => {
             try {
-                const { phone, email, password } = data.body;
-                if(!phone && !email && !password && phone === null && email === null && password === null){
+                const { phone, email, password, confirmPassword } = data.body;
+                if(!phone && !email && !password && !confirmPassword && phone === null && email === null && password === null && password !== confirmPassword){
                     return res({
                         status: 400,
                         message: __("input_required"),
