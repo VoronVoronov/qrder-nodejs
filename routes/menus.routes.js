@@ -8,4 +8,10 @@ router.post('/menus/create', middlewareAuth, [
     check('name', 'name_required').notEmpty(),
 ], MenuController.createMenu);
 
+router.put('/menus/update/:id', middlewareAuth, [
+    check('name', 'name_required').notEmpty(),
+], MenuController.updateMenu);
+
+router.delete('/menus/delete/:id', middlewareAuth, MenuController.deleteMenu);
+
 module.exports = router;

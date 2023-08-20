@@ -11,5 +11,7 @@
     "email_required": "",
     "password_required": "",
     "menu_created": "",
-    "input_required": ""
+    "input_required": "",
+    "menu_updated": "",
+    "menu_deleted": ""
 }
