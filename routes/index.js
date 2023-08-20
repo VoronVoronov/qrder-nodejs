@@ -5,7 +5,7 @@ const express = require('express'),
         i18n = require('i18n'),
         Logs = require('../middleware/logs');
 
-router.use("/api/:lang", (req, res, next) => {
+router.use("/:lang", (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

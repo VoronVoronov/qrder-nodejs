@@ -1,5 +1,4 @@
-const MenusService = require('../services/menus.service'),
-    { validationResult } = require('express-validator');
+const MenusService = require('../services/menus.service');
 
 class MenusController {
     async createMenu(req, res) {
