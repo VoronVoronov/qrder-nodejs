@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 const logsSchema = new mongoose.Schema({
-    user_id: { type: Number, default: null },
     ip: { type: String },
     date: { type: Date, default: Date.now },
-    action: { type: String },
+    body: { type: String },
     url: { type: String },
+    lang: { type: String },
     method: { type: String },
 });
 

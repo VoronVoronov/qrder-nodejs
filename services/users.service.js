@@ -51,7 +51,7 @@ class UsersService {
     loginUser(data) {
         return new Promise(async (res, rej) => {
             try {
-                const { email, password } = data.body;
+                const { email, password, remember_me } = data.body;
                 if(!email && !password && email === null && password === null){
                     return res({
                         status: 400,
@@ -65,6 +65,10 @@ class UsersService {
                         message: __("user_not_found"),
                     });
                 }
+                let expiresIn = process.env.TOKEN_EXPIRY;
+                if(remember_me){
+                    expiresIn = process.env.TOKEN_EXPIRY_REMEMBER_ME;
+                }
                 if (user && (await bcrypt.compare(password, user.password))) {
                     const token = jwt.sign(
                         {
@@ -73,7 +77,7 @@ class UsersService {
                         },
                           process.env.TOKEN_KEY,
                         {
-                          expiresIn: process.env.TOKEN_EXPIRY,
+                          expiresIn: expiresIn,
                         }
                     );
                     user.last_login_date = new Date();
