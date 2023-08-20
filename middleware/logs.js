@@ -8,10 +8,11 @@ const logsMiddleware = (req, res) => {
         url: req.url,
         lang: req.params.lang,
         method: req.method,
+        status: res.statusCode,
     });
     try {
         logEntry.save().then(() => {
-            console.log("Log entry saved to database");
+            console.log("Log entry saved to database ID " + logEntry._id + "!");
         });
     } catch (err) {
         console.log(err);

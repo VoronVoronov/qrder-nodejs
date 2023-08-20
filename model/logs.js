@@ -7,6 +7,7 @@ const logsSchema = new mongoose.Schema({
     url: { type: String },
     lang: { type: String },
     method: { type: String },
+    status: { type: Number },
 });
 
 module.exports = mongoose.model("logs", logsSchema);
