@@ -1,4 +1,5 @@
-const Menu = require("../model/menu");
+const Menu = require("../model/menu"),
+    i18n = require("../traits/i18n");
 
 class MenusService{
     createMenu(data){
@@ -8,7 +9,7 @@ class MenusService{
                 if(!name && name !== null && !domain && domain !== null){
                     return res({
                         status: 400,
-                        message: __("input_required"),
+                        message: i18n.__("input_required"),
                     });
                 }
                 const menu = await Menu.create({
@@ -18,7 +19,7 @@ class MenusService{
                 });
                 return res({
                     status: 201,
-                    message: __("menu_created"),
+                    message: i18n.__("menu_created"),
                     result: menu
                 });
             } catch (err) {
@@ -39,7 +40,7 @@ class MenusService{
             }
         });
     }
-    getMenusById(data){
+    getMenuById(data){
         return new Promise(async (res, rej) => {
             try {
                 const menu = await Menu.findById(data.params.id);
@@ -59,7 +60,7 @@ class MenusService{
                 if(!name && name !== null && !domain && domain !== null){
                     return res({
                         status: 400,
-                        message: __("input_required"),
+                        message: i18n.__("input_required"),
                     });
                 }
                 const menu = await Menu.findByIdAndUpdate(data.params.id, {
@@ -68,7 +69,7 @@ class MenusService{
                 });
                 return res({
                     status: 200,
-                    message: __("menu_updated"),
+                    message: i18n.__("menu_updated"),
                     result: menu
                 });
             } catch (err) {
@@ -82,7 +83,7 @@ class MenusService{
                 const menu = await Menu.findByIdAndDelete(data.params.id);
                 return res({
                     status: 200,
-                    message: __("menu_deleted"),
+                    message: i18n.__("menu_deleted"),
                     result: menu
                 });
             } catch (err) {

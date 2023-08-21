@@ -10,6 +10,7 @@
     "phone_required": "",
     "email_required": "",
     "password_required": "",
+    "name_required": "",
     "menu_created": "",
     "input_required": "",
     "menu_updated": "",

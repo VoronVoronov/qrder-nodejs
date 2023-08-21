@@ -1,4 +1,5 @@
-const MenusService = require('../services/menus.service');
+const MenusService = require('../services/menus.service'),
+    i18n = require("../traits/i18n");
 
 class MenusController {
     async createMenu(req, res) {
@@ -10,7 +11,7 @@ class MenusController {
             });
         } catch (err) {
             return res.status(500).send({
-                message: __("system_error"),
+                message: i18n.__("system_error"),
                 errors: err
             });
         }
@@ -24,7 +25,7 @@ class MenusController {
             });
         } catch (err) {
             return res.status(500).send({
-                message: __("system_error"),
+                message: i18n.__("system_error"),
                 errors: err
             });
         }
@@ -38,7 +39,7 @@ class MenusController {
             });
         } catch (err) {
             return res.status(500).send({
-                message: __("system_error"),
+                message: i18n.__("system_error"),
                 errors: err
             });
         }
@@ -52,7 +53,7 @@ class MenusController {
             });
         } catch (err) {
             return res.status(500).send({
-                message: __("system_error"),
+                message: i18n.__("system_error"),
                 errors: err
             });
         }
@@ -66,7 +67,7 @@ class MenusController {
             });
         } catch (err) {
             return res.status(500).send({
-                message: __("system_error"),
+                message: i18n.__("system_error"),
                 errors: err
             });
         }

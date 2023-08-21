@@ -1,6 +1,8 @@
 const User = require("../model/user"),
     bcrypt = require('bcryptjs'),
-    jwt = require('jsonwebtoken');
+    jwt = require('jsonwebtoken')
+    i18n = require("../traits/i18n");
+
 class UsersService {
     createUser(data) {
         return new Promise(async (res, rej) => {
@@ -9,14 +11,14 @@ class UsersService {
                 if(!phone && !email && !password && !confirmPassword && phone === null && email === null && password === null && password !== confirmPassword){
                     return res({
                         status: 400,
-                        message: __("input_required"),
+                        message: i18n.__("input_required"),
                     });
                 }
                 const oldUser = await User.findOne({ email });
                 if (oldUser) {
                     return res({
                         status: 409,
-                        message: __("user_already_exist"),
+                        message: i18n.__("user_already_exist"),
                     });
                 }
                 const encryptedPassword = await bcrypt.hash(password, 7);
@@ -38,7 +40,7 @@ class UsersService {
                 );
                 return res({
                     status: 201,
-                    message: __("user_created"),
+                    message: i18n.__("user_created"),
                     result: user
                 });
             } catch (err) {
@@ -53,14 +55,14 @@ class UsersService {
                 if(!email && !password && email === null && password === null){
                     return res({
                         status: 400,
-                        message: __("input_required"),
+                        message: i18n.__("input_required"),
                     });
                 }
                 const user = await User.findOne({ email });
                 if (!user) {
                     return res({
                         status: 404,
-                        message: __("user_not_found"),
+                        message: i18n.__("user_not_found"),
                     });
                 }
                 let expiresIn = process.env.TOKEN_EXPIRY;
@@ -84,13 +86,13 @@ class UsersService {
                     user.token = token;
                     return res({
                         status: 200,
-                        message: __("logged_in"),
+                        message: i18n.__("logged_in"),
                         token: token
                     });
                 }
                 return res({
                     status: 400,
-                    message: __("invalid_credentials"),
+                    message: i18n.__("invalid_credentials"),
                 });
             } catch (err) {
                 return rej(err); // или какая-то другая обработка ошибки
