@@ -1,6 +1,6 @@
 const User = require("../model/user"),
     bcrypt = require('bcryptjs'),
-    jwt = require('jsonwebtoken')
+    jwt = require('jsonwebtoken'),
     i18n = require("../traits/i18n");
 
 class UsersService {
