@@ -29,6 +29,34 @@ class MenusController {
             });
         }
     }
+    async getMenus(req, res) {
+        try {
+            let menu = await MenusService.getMenus(req);
+            if (menu.status === 200) return res.status(200).json(menu);
+            else return res.status(menu.status).send({
+                message: menu.message,
+            });
+        } catch (err) {
+            return res.status(500).send({
+                message: __("system_error"),
+                errors: err
+            });
+        }
+    }
+    async getMenuById(req, res) {
+        try {
+            let menu = await MenusService.getMenuById(req);
+            if (menu.status === 200) return res.status(200).json(menu);
+            else return res.status(menu.status).send({
+                message: menu.message,
+            });
+        } catch (err) {
+            return res.status(500).send({
+                message: __("system_error"),
+                errors: err
+            });
+        }
+    }
     async deleteMenu(req, res) {
         try {
             let menu = await MenusService.deleteMenu(req);

@@ -4,8 +4,8 @@ class MenusService{
     createMenu(data){
         return new Promise(async (res, rej) => {
             try {
-                const { name } = data.body;
-                if(!name && name !== null){
+                const { name, domain } = data.body;
+                if(!name && name !== null && !domain && domain !== null){
                     return res({
                         status: 400,
                         message: __("input_required"),
@@ -13,11 +13,38 @@ class MenusService{
                 }
                 const menu = await Menu.create({
                     user_id: data.user.user_id,
-                    name: name
+                    name: name,
+                    domain: domain
                 });
                 return res({
                     status: 201,
                     message: __("menu_created"),
+                    result: menu
+                });
+            } catch (err) {
+                return rej(err);
+            }
+        });
+    }
+    getMenus(data){
+        return new Promise(async (res, rej) => {
+            try {
+                const menus = await Menu.find({user_id: data.user.user_id});
+                return res({
+                    status: 200,
+                    result: menus
+                });
+            } catch (err) {
+                return rej(err);
+            }
+        });
+    }
+    getMenusById(data){
+        return new Promise(async (res, rej) => {
+            try {
+                const menu = await Menu.findById(data.params.id);
+                return res({
+                    status: 200,
                     result: menu
                 });
             } catch (err) {

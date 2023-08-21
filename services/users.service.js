@@ -1,7 +1,6 @@
 const User = require("../model/user"),
     bcrypt = require('bcryptjs'),
-    jwt = require('jsonwebtoken'),
-    { validationResult } = require('express-validator');
+    jwt = require('jsonwebtoken');
 class UsersService {
     createUser(data) {
         return new Promise(async (res, rej) => {
@@ -27,17 +26,16 @@ class UsersService {
                     password: encryptedPassword,
                     registration_ip: data.ip,
                 });
-                const token = await jwt.sign(
+                user.token = await jwt.sign(
                     {
                         user_id: user._id,
                         email
                     },
-                        process.env.TOKEN_KEY,
+                    process.env.TOKEN_KEY,
                     {
                         expiresIn: process.env.TOKEN_EXPIRY,
                     }
                 );
-                user.token = token;
                 return res({
                     status: 201,
                     message: __("user_created"),

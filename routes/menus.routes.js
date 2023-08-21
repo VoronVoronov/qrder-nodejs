@@ -12,6 +12,10 @@ router.put('/menus/update/:id', middlewareAuth, [
     check('name', 'name_required').notEmpty(),
 ], MenuController.updateMenu);
 
+router.get('/menus', middlewareAuth, MenuController.getMenus);
+
+router.get('/menus/:id', middlewareAuth, MenuController.getMenuById);
+
 router.delete('/menus/delete/:id', middlewareAuth, MenuController.deleteMenu);
 
 module.exports = router;
